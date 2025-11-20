@@ -10,10 +10,12 @@
     <link rel="preload" as="style" href="/style/css/main.css">
     <link rel="preload" as="style" href="/style/css/ticons.css">
     <link rel="preload" as="style" href="/style/css/search.css">
+    <link rel="preload" as="style" href="/style/css/min/range-slider.css">
     
     <link rel="stylesheet" href="/style/css/main.css">
     <link rel="stylesheet" href="/style/css/ticons.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="/style/css/search.css">
+    <link rel="stylesheet" as="style" href="/style/css/min/range-slider.css">
     <link rel="manifest" href="/images/icons/manifest-o.json">
     <link rel="preload" href="/style/fonts/Manrope.ttf" as="font" type="font/woff2" crossorigin>
 </head>
@@ -156,6 +158,28 @@
                     <div class="title">Статус:</div>
                     <div class="filter--status">
                         <div class="list-wrapper">
+                        </div>
+                    </div>
+                    <div class="title">Year:</div>
+                    <div class="filter--year">
+                        <div class="list-wrapper">
+                        </div>
+                    </div>
+                    <div class="slider-wrapper filter--status">
+                        <div class="container">
+
+                            <div class="slider-track"></div>
+                            
+                            <div class="slider-btn-container" id="slider-btn-right" style="left: 100%;">
+                                <div class="slider-text tip" id="right-slide-text">2026</div>
+                                <div class="slider-btn"></div>
+                            </div>
+                            
+                            <div class="slider-btn-container" id="slider-btn-left">
+                                <div class="slider-text tip" id="left-slide-text">1985</div>
+                                <div class="slider-btn"></div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="title">Тип:</div>
@@ -329,6 +353,7 @@
     <script src="./javascript/parametrs.js"></script>
     <script src="/javascript/services/dispatcher.js" type="module"></script>
     <script src="./javascript/pages/search.js" type="module"></script>
+    <script src="./javascript/library/range-slider.js"></script>
 </body>
 
 </html>

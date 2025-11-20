@@ -42,6 +42,10 @@ const data = {
         { name: 'PG-13', value: 'pg_13' },
         { name: 'R-17', value: 'r' },
         { name: 'R+', value: 'r_plus' },
+    ], 
+    year: [
+        { name: "All", value: undefined },
+        { name: "Custom", value: undefined }
     ]
 };
 
@@ -129,6 +133,21 @@ function setStatus() {
     }
 }
 
+function setYear(){
+    const { year } = data;
+    const dom = $(`.filter--year > .list-wrapper`);
+    for(let i = 0; i < year.length; i++){
+        const el = year[i];
+        dom.append(`<div class="year" data-id="${i}">${el.name}</div>`);
+    }
+
+    $(`.list-wrapper > .year[data-id="0"]`).addClass('sel');
+    if(year[0].value !== undefined){
+        seleted.year = `"${year[0].value}"`
+    }
+
+}
+
 const filter = {
     init: function () {
         setSort();
@@ -205,6 +224,9 @@ const filter = {
                 seleted.rating = `"${data.rating[el.data('id')].value}"`;
             }
         });
+
+        //filret by year
+        setYear();
 
         $(`.bar-filter > .window-close`).on('click', () => {
             this.hide();

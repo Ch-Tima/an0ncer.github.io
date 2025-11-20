@@ -241,8 +241,7 @@ header .preview .btn-back {
   z-index: 15;
   top: 20px;
   left: 20px;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   border-radius: 5px;
   display: grid;
   place-items: center;
@@ -307,8 +306,7 @@ header .preview .anime-status .cur-status {
 }
 header .preview .anime-status .cur-status .more-status {
   background: rgba(164, 164, 164, 0.5);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 5px 0px 0px 5px;
   width: 18px;
@@ -370,6 +368,9 @@ header .preview .anime-status .list-status > .hide {
   max-height: 0px;
   overflow: hidden;
 }
+header .preview .anime-status .list-status > .status:first-child {
+  border-radius: 3px 3px 0 0;
+}
 header .preview .anime-status .list-status > .status {
   background: rgba(133, 133, 133, 0.8);
   width: 100%;
@@ -378,9 +379,6 @@ header .preview .anime-status .list-status > .status {
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-}
-header .preview .anime-status .list-status > .status:first-child {
-  border-radius: 3px 3px 0 0;
 }
 header .preview .anime-status .list-status > .status .safe-area {
   min-width: 35px;
@@ -639,8 +637,7 @@ main .hero-anime .val a .hero {
   place-items: center;
   padding: 10px 0px;
   background: rgba(16, 19, 24, 0.7);
-  -webkit-backdrop-filter: blur(2.5px);
-          backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
   position: absolute;
   bottom: 0;
 }
@@ -911,8 +908,7 @@ footer .studio span {
   left: 0;
   right: 0;
   background: rgba(16, 19, 24, 0.7);
-  -webkit-backdrop-filter: blur(2.5px);
-          backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
   text-align: center;
   padding: 10px 0px;
   z-index: 4;
@@ -931,8 +927,7 @@ footer .studio span {
   right: 10px;
   top: 10px;
   background: linear-gradient(98.26deg, #51B2FF 0%, #2672DA 100%);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   border-radius: 3px;
   padding: 4px 8px;
   display: flex;
@@ -1705,10 +1700,6 @@ footer .studio span {
   padding-left: 10px;
   transition: 0.3s ease-in-out;
 }
-.content-collection .content-wraper .collection-search input::-moz-placeholder {
-  color: #D4D4D8;
-  font-weight: normal;
-}
 .content-collection .content-wraper .collection-search input::placeholder {
   color: #D4D4D8;
   font-weight: normal;
@@ -1817,13 +1808,27 @@ footer .studio span {
     border-radius: 3px;
   }
 }
-@keyframes fadeInUp {
+@-webkit-keyframes fadeInUp {
   0% {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
   100% {
     opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
     transform: none;
   }
 }
@@ -2246,7 +2251,6 @@ footer .studio span {
 .list-franchise a.franchise .anime-info .status {
   background: #f7d149;
   color: #191c21;
-  width: -moz-fit-content;
   width: fit-content;
   font-size: 11px;
   font-weight: bold;
@@ -2515,8 +2519,7 @@ footer .studio span {
   z-index: 1000;
   transition: 0.3s ease-in-out;
   pointer-events: none;
-  -webkit-backdrop-filter: blur(0px);
-          backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
   border-radius: 15px;
   pointer-events: none;
 }
@@ -2645,3 +2648,5 @@ footer .studio span {
     background: #101318;
   }
 }
+
+/*# sourceMappingURL=watch.css.map */

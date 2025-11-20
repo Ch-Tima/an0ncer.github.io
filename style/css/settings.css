@@ -44,28 +44,13 @@ body {
   outline: none;
 }
 @supports (-moz-appearance: none) {
-  .search-filter:-moz-placeholder-shown {
-    padding-left: 40px;
-    -moz-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
-  }
   .search-filter:placeholder-shown {
     padding-left: 40px;
     transition: 0.3s ease-in-out;
   }
-  .search-filter:focus:-moz-placeholder-shown {
-    padding-left: 10px;
-  }
   .search-filter:focus:placeholder-shown {
     padding-left: 10px;
   }
-}
-.search-filter::-moz-placeholder {
-  padding-left: 30px;
-  color: #fff;
-  opacity: 0.7;
-  -moz-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
 }
 .search-filter::placeholder {
   padding-left: 30px;
@@ -73,14 +58,8 @@ body {
   opacity: 0.7;
   transition: 0.3s ease-in-out;
 }
-.search-filter:focus::-moz-placeholder {
-  padding-left: 0px;
-}
 .search-filter:focus::placeholder {
   padding-left: 0px;
-}
-.search-filter:not(:-moz-placeholder-shown) ~ .icon {
-  opacity: 0;
 }
 .search-filter:not(:placeholder-shown) ~ .icon {
   opacity: 0;
@@ -481,8 +460,7 @@ footer {
   bottom: 0;
   z-index: 75;
   opacity: 1;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   opacity: 0;
   transition: 0.3s ease-in-out;
 }
@@ -500,8 +478,7 @@ footer {
   width: 100%;
   background: rgb(25, 28, 33);
   border-radius: 4px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   z-index: 77;
   display: flex;
   flex-direction: column;
@@ -603,9 +580,6 @@ body.menuver[data-orientation="90"] .application-menu .btn-menu:first-child, bod
 body.menuver[data-orientation="90"] .application-menu .btn-menu:last-child, body.menuver[data-orientation="270"] .application-menu .btn-menu:last-child {
   margin: 0;
 }
-body.menuver[data-orientation="90"] {
-  margin-left: 75px;
-}
 body.menuver[data-orientation="90"] .application-menu {
   left: 0;
   right: auto;
@@ -613,8 +587,8 @@ body.menuver[data-orientation="90"] .application-menu {
   border-radius: 0px 7px 7px 0px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
-body.menuver[data-orientation="270"] {
-  margin-right: 75px;
+body.menuver[data-orientation="90"] {
+  margin-left: 75px;
 }
 body.menuver[data-orientation="270"] .application-menu {
   left: auto;
@@ -622,6 +596,9 @@ body.menuver[data-orientation="270"] .application-menu {
   padding-right: 10px;
   border-radius: 7px 0px 0px 7px;
   border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.menuver[data-orientation="270"] {
+  margin-right: 75px;
 }
 
 body.menuver[data-orientation="270"] .interactive-menu .user-interactive {
@@ -1020,3 +997,5 @@ body[data-orientation="270"] .wraper-input {
   margin-left: max(20px, env(safe-area-inset-left));
   margin-right: 10px;
 }
+
+/*# sourceMappingURL=settings.css.map */

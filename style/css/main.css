@@ -17,9 +17,7 @@
 }
 
 .unselectable {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .scroll-none {
@@ -31,16 +29,14 @@
 
 img {
   pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   -webkit-user-drag: none;
 }
 
 a {
   text-decoration: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   -webkit-user-drag: none;
 }
+
+/*# sourceMappingURL=main.css.map */

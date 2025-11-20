@@ -146,6 +146,7 @@
             .filter--status,
             .filter--type,
             .filter--score,
+            .filter--year,
             .filter--rating {
                 margin-left: 10px;
                 margin-right: 10px;
@@ -160,6 +161,7 @@
                     overflow-x: auto;
 
                     .status,
+                    .year,
                     .type,
                     .rating {
                         min-width: 90px;

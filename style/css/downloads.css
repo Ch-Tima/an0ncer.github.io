@@ -190,8 +190,7 @@ body.loading {
   bottom: 0;
   z-index: 75;
   opacity: 1;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   opacity: 0;
   transition: 0.3s ease-in-out;
 }
@@ -209,8 +208,7 @@ body.loading {
   width: 100%;
   background: rgb(25, 28, 33);
   border-radius: 4px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   z-index: 77;
   display: flex;
   flex-direction: column;
@@ -312,9 +310,6 @@ body.menuver[data-orientation="90"] .application-menu .btn-menu:first-child, bod
 body.menuver[data-orientation="90"] .application-menu .btn-menu:last-child, body.menuver[data-orientation="270"] .application-menu .btn-menu:last-child {
   margin: 0;
 }
-body.menuver[data-orientation="90"] {
-  margin-left: 75px;
-}
 body.menuver[data-orientation="90"] .application-menu {
   left: 0;
   right: auto;
@@ -322,8 +317,8 @@ body.menuver[data-orientation="90"] .application-menu {
   border-radius: 0px 7px 7px 0px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
-body.menuver[data-orientation="270"] {
-  margin-right: 75px;
+body.menuver[data-orientation="90"] {
+  margin-left: 75px;
 }
 body.menuver[data-orientation="270"] .application-menu {
   left: auto;
@@ -331,6 +326,9 @@ body.menuver[data-orientation="270"] .application-menu {
   padding-right: 10px;
   border-radius: 7px 0px 0px 7px;
   border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.menuver[data-orientation="270"] {
+  margin-right: 75px;
 }
 
 body.menuver[data-orientation="270"] .interactive-menu .user-interactive {
@@ -386,8 +384,7 @@ body.menuver[data-orientation="90"] .interactive-menu .user-interactive .triangl
   left: 0;
   right: 0;
   background: rgba(16, 19, 24, 0.7);
-  -webkit-backdrop-filter: blur(2.5px);
-          backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
   text-align: center;
   padding: 10px 0px;
   z-index: 4;
@@ -406,8 +403,7 @@ body.menuver[data-orientation="90"] .interactive-menu .user-interactive .triangl
   right: 10px;
   top: 10px;
   background: linear-gradient(98.26deg, #51B2FF 0%, #2672DA 100%);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   border-radius: 3px;
   padding: 4px 8px;
   display: flex;
@@ -1048,7 +1044,6 @@ body.menuver[data-orientation="90"] .interactive-menu .user-interactive .triangl
     display: grid;
     overflow-y: auto;
     max-height: unset;
-    height: -moz-fit-content;
     height: fit-content;
     grid-template-rows: auto;
   }
@@ -1573,3 +1568,5 @@ body.menuver[data-orientation="90"] .interactive-menu .user-interactive .triangl
   height: 13px;
   background-color: #87898B;
 }
+
+/*# sourceMappingURL=downloads.css.map */
