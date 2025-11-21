@@ -45,7 +45,12 @@ const data = {
     ], 
     year: [
         { name: "All", value: undefined },
-        { name: "Custom", value: undefined }
+        { 
+            name: "Custom", value: {
+                from: undefined,
+                to: undefined
+            } 
+        }
     ]
 };
 
@@ -227,6 +232,29 @@ const filter = {
 
         //filret by year
         setYear();
+        $(".slider-wrapper").hide();
+        $(".slider-wrapper").on("afterMove", (e, d)=>{
+            if (seleted.year && typeof seleted.year === "object") {
+                seleted.year.from = d.from;
+                seleted.year.to  = d.to;
+            }
+        });
+        $(".filter--year").on('click', (event) => {
+            const el = $(event.target);
+            if (el.hasClass('year')) {
+                $(`.year`).removeClass('sel');
+                el.addClass('sel');
+                if(data.year[el.data('id')].value === undefined){
+                    $(".slider-wrapper").hide();
+                    seleted.year = undefined;
+                }else{
+                    $(".slider-wrapper").show();
+                    data.year[el.data('id')].value.from = $("#slider-btn-left").val();
+                    data.year[el.data('id')].value.to = $("#slider-btn-right").val();
+                    seleted.year = data.year[el.data('id')].value;
+                }
+            }
+        });
 
         $(`.bar-filter > .window-close`).on('click', () => {
             this.hide();

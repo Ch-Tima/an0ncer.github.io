@@ -35,7 +35,9 @@ $(function(){
 
     //Left/Right Slider
     thumbLeft.slider = $("#slider-btn-left"); 
+    thumbLeft.slider.val(minVal);
     thumbRight.slider = $("#slider-btn-right");
+    thumbRight.slider.val(maxVal);
     //Left/Right TextBox
     thumbLeft.sliderText = $("#left-slide-text");
     thumbLeft.sliderText.text(minVal);
@@ -72,6 +74,10 @@ $(function(){
         //Disable drag and drop
         thumbLeft.isDragging = false;
         thumbRight.isDragging = false;
+        slidTrak.trigger('afterMove', {
+            from: getVal(thumbLeft),
+            to: getVal(thumbRight),
+        })
     });
 
 });
@@ -98,14 +104,14 @@ function updateSliderThumb(e, thumbObj){
     
     if(thumbObj === thumbLeft){
         console.log("thumbLeft");
-        const yearRight = Math.round(minVal+(getDeltaX(thumbRight.gloabalThumbPosX, thumbRight)/slidTrak.width())*(maxVal-minVal));
+        const yearRight = getVal(thumbRight)
         if(yearRight-year < minGap) return;
     }
 
 
     if(thumbObj === thumbRight){
         console.log("thumbRight");
-        const yearLeft = Math.round(minVal+(getDeltaX(thumbLeft.gloabalThumbPosX, thumbLeft)/slidTrak.width())*(maxVal-minVal));
+        const yearLeft = getVal(thumbLeft);
         if(year-yearLeft < minGap) return;
     }
 
@@ -113,6 +119,7 @@ function updateSliderThumb(e, thumbObj){
     $(thumbObj.slider).css("left", deltaX + 'px');
 
     thumbObj.sliderText.text(year);
+    thumbObj.slider.val(year);
 
     thumbObj.gloabalThumbPosX = currentX;
 }
@@ -125,3 +132,6 @@ function getDeltaX(currentX, thumbObj){
     return deltaX;
 }
 
+function getVal(thumb){
+    return Math.round(minVal+(getDeltaX(thumb.gloabalThumbPosX, thumb)/slidTrak.width())*(maxVal-minVal));
+}
