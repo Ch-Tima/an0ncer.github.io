@@ -380,6 +380,8 @@ export const GraphQl = {
     animes: function (arg = {}, event = () => { }, signal) {
         const url = this.base_url();
         const request = Fetch("POST", url, Headers.base());
+        console.log("380_POST_SAPI");
+        console.log(request);
         return {
             POST: async (body = [], logged = false) => {
                 body = BodyGraphQl("animes", arg, body);

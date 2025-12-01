@@ -72,12 +72,14 @@ $(function(){
 
     $(document).on("mouseup touchend", function () {
         //Disable drag and drop
+        if(thumbLeft.isDragging == true || thumbRight.isDragging == true){
+            slidTrak.trigger('afterMove', {
+                from: getVal(thumbLeft),
+                to: getVal(thumbRight),
+            })
+        }
         thumbLeft.isDragging = false;
         thumbRight.isDragging = false;
-        slidTrak.trigger('afterMove', {
-            from: getVal(thumbLeft),
-            to: getVal(thumbRight),
-        })
     });
 
 });

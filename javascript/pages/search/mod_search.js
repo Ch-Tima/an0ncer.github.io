@@ -57,7 +57,17 @@ class IOEngine {
 
     fetchAnimes(params, e = () => { }) {
         const { signal } = this.controller;
-        GraphQl.animes(params, async (response) => {
+
+        const filter_year = params.year;    
+        // Создаем копию без year для запроса
+        const paramsCopy = { ...params };
+        delete paramsCopy.year;//paramsCopy должен быть без поля year
+
+        if(filter_year !== undefined){
+            paramsCopy.limit = 50;
+        }
+        //запрос
+        GraphQl.animes(paramsCopy, async (response) => {
             if (response.failed) {
                 if (response.status == 429) {
                     await Sleep(1200);
@@ -67,19 +77,38 @@ class IOEngine {
             }
 
             const { animes } = response.data;
-
+            console.log(response);
             const card = new ACardH({ isLogged: IsLogged });
             $('.results-wrapper').removeClass('load');
             $(`.results > .load-wrapper`).remove();
 
             animes.forEach(anime => {
+                // Всегда вычисляем personen для каждого аниме
                 anime.personen = anime.statusesStats.reduce((sum, item) => sum + item.count, 0);
-                $(`.results-wrapper > .results`).append(card.gen({ anime, redirects: { image: "poster.main2xUrl" } }, 'div'));
+                
+                // Проверяем фильтр по году
+                let shouldAdd = true;
+                if(filter_year !== undefined){
+                    if(anime.airedOn && anime.airedOn.year !== null) {
+                        shouldAdd = filter_year.from <= anime.airedOn.year && filter_year.to >= anime.airedOn.year;
+                    } else {
+                        shouldAdd = false; // Если год неизвестен, не добавляем
+                    }
+                }
+                
+                if(shouldAdd) {
+                    $(`.results-wrapper > .results`).append(
+                        card.gen({ anime, redirects: { image: "poster.main2xUrl" } }, 'div')
+                    );
+                }
+
             });
 
-            if (animes.length == 0) {
-                TTSearch.instance.empty();
-            }
+            if($('.results').children().length == 0){
+                TTSearch.instance.empty();//not found
+            }else{
+                TTSearch.instance.end();
+            } 
 
             e(animes);
         }, signal).POST(["id", { "poster": ["main2xUrl"] }, "name", "russian", "kind", "season", "episodesAired", "episodes", "status", { "statusesStats": ["status", "count"] }, "score", { "userRate": ["status", "id"] }, { "airedOn": ["year"] }], IsLogged);
@@ -163,7 +192,7 @@ class DefaultSearch extends IOEngine {
 
         $(`.results`).append(`<div class="load-wrapper"><span class="loader"></span></div>`);
 
-        this.fetchAnimes({ ...params, page: this.page }, (animes) => {
+        this.fetchAnimes({ ...params, ...GetFilter(), page: this.page }, (animes) => {
             if (animes.length >= params.limit) {
                 return this.observer.observe($('.results-wrapper > .sentinel')[0]);
             }
